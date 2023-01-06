@@ -35,6 +35,9 @@ namespace BLL.Tests
             SecurityContext.SetUser(user);
             var mockUnitOfWork = new Mock<IUnitOfWork>();
             IHumanService humanService = new HumanService(mockUnitOfWork.Object);
+
+            // Act
+            // Assert
             Assert.Throws<MethodAccessException>(() => humanService.GetHumans(0));
         }
         [Fact]
@@ -44,10 +47,17 @@ namespace BLL.Tests
             User user = new Analytik(1, "Petro", "Ivanov", "analytic1", "bjiei@mail");
             SecurityContext.SetUser(user);
             var humanService = GetHumanService();
+
+            // Act
             var actualHumanDto = humanService.GetHumans(1).First();
+            
+            // Assert
             Assert.True(
-                actualHumanDto.IdHuman == 1 && actualHumanDto.Name == "Petro" && actualHumanDto.Surname == "Ivanov"
-                && actualHumanDto.Age == 32 && actualHumanDto.Sex == DTO.Sex.Male
+                actualHumanDto.IdHuman == 1
+                && actualHumanDto.Name == "Petro"
+                && actualHumanDto.Surname == "Ivanov"
+                && actualHumanDto.Age == 32
+                && actualHumanDto.Sex == DTO.Sex.Male
                 );
         }
         IHumanService GetHumanService()
