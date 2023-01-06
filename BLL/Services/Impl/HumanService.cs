@@ -18,7 +18,7 @@ namespace BLL.Services.Impl
     {
         private readonly IUnitOfWork _database;
         private int pageSize = 10;
-            public HumanService(IUnitOfWork unitOfWork)
+        public HumanService(IUnitOfWork unitOfWork)
         {
             if (unitOfWork == null)
             {
